@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Casio</title>
+    <style>
+      h3 {
+        text-align: right;
+        /* font-size: 50px; */
+        color: teal;
+      }
+      #calculator{
+        height: 350px;
+        width: 350px;
+        box-shadow: rgba(15, 15, 15, 0.041) 0px 5px 15px;
+         /* background-color: rgba(7, 7, 7, 0);  */
+        margin: auto;
+        margin-top: 30px;
+        border-radius: 20px;
+        padding:30px 15px;
+        
+      }
+      #input{
+        height: 15%;
+        width: 80%;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        margin: auto;
+        border-radius: 10px ;
+        font-size: 40px;
+        /* display: flex;
+        justify-content: center; */
+        /* align-items:right; */
+        text-align: right;
+        box-sizing: border-box;
+        padding-right: 5px;
+      }
+
+      /* use grid to acheive the layout */
+      #keyboard{
+        height: 80%;
+        width: 80%;
+        margin: auto;
+        display: grid;
+        grid-template-columns: repeat(4,1fr);
+        grid-template-rows: repeat(4,60px);
+        
+        gap: 10px;
+        margin-top: 15px;
+      }
+      #keyboard>div{
+          border-radius: 50%;
+          justify-content: center;
+          align-items: center;
+          display: flex;
+          font-size: 25px;
+          font-weight: bold;
+          box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+          cursor: pointer;
+          
+      }
+      #keyboard>div :hover {
+         background-color: teal;
+        }
+      .black{
+        background-color: black;
+        color: white;
+      }
+      .red{
+        background-color: red;
+        color: white;
+      }
+
+      /* #container{
+        width: 25%;
+        margin: auto;
+      } */
+
+    </style>
+  </head>
+  <body>
+   <!-- <div id="container"> -->
+    <!-- <h3>Casio</h3> -->
+    <div id="calculator">
+      <div id="input"></div>
+      <div id="keyboard">
+          <div>1</div>
+          <div>2</div>
+          <div>3</div>
+          <div class="black">+</div>
+          <div>4</div>
+          <div>5</div>
+          <div>6</div>
+          <div class="black">-</div>
+          <div>7</div>
+          <div>8</div>
+          <div>9</div>
+          <div class="black">*</div>
+          <div class="red">C</div>
+          <div>0</div>
+          <div class="black">=</div>
+          <div class="black">/</div>
+      </div>
+    </div>
+   <!-- </div> -->
+  </body>
+</html>
+<script>
+  var x =document.querySelectorAll("#keyboard>div");
+  var display = document.querySelector("#input")
+  //event delegation
+  for(var i=0;i<x.length;i++)
+  {
+     x[i].addEventListener("click", myCalcultor);
+  }
+
+  function myCalcultor(){
+    var targetNumber = event.target.innerText;
+
+    switch(targetNumber){
+      case "C":
+      display.innerText="";
+      break;
+      case "=":
+        switch(display.innerText){
+          case "": 
+          display.innerText="";
+          break;
+
+          default: 
+          display.innerText= eval(display.innerText);
+        }
+        // if(display.innerText == undefined)
+        // {
+        //    display.innerText="";
+        // }
+        // else
+        // {
+        //   display.innerText= eval(display.innerText);
+        // } 
+        // display.innerText= eval(display.innerText); 
+      break;
+      default:
+        display.innerText = display.innerText + targetNumber;
+    }
+  }
+</script>
